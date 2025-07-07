@@ -185,6 +185,7 @@ def remove_nth_from_end(head, n):
     return head
 
 ### 1 PASS 2 POINTER APPROACH
+# Leetcode 19, Remove nth from end of list (Medium)
 
 def remove_nth_from_end(head, n):
     dummy = ListNode(0,head)
