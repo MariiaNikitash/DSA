@@ -66,16 +66,16 @@ q.enqueue(('Hug from a Dinosaur', 'Torres'))
 print_queue(q)
 
 # View the front element
-print("Peek: ", q.peek()) 
+#print("Peek: ", q.peek()) 
 #Remove elements from the queue
-print("Dequeue: ", q.dequeue()) 
-print("Dequeue: ", q.dequeue()) 
+#print("Dequeue: ", q.dequeue()) 
+#print("Dequeue: ", q.dequeue()) 
 #Check if the queue is empty
-print("Is Empty: ", q.is_empty()) 
+#print("Is Empty: ", q.is_empty()) 
 #Remove the last element
-print("Dequeue: ", q.dequeue()) 
+#print("Dequeue: ", q.dequeue()) 
 #Check if the queue is empty
-print("Is Empty:", q.is_empty()) 
+#print("Is Empty:", q.is_empty()) 
 
 #('Love Song', 'Sara Bareilles') -> ('Ballad of Big Nothing', 'Elliot Smith') 
 # -> ('Hug from a Dinosaur', 'Torres')
@@ -86,35 +86,45 @@ print("Is Empty:", q.is_empty())
 # Dequeue:  ('Hug from a Dinosaur', 'Torres')
 # Is Empty: True
 
+# Problem 2 
+# LC LeetCode 1669: Merge In Between Linked Lists
 
-#class Node:
-#	def __init__(self, value, next=None):
-#		self.value = value
-#		self.next = next
-#
-## For testing
-#def print_linked_list(head):
-#    current = head
-#    while current:
-#        print(current.value, end=" -> " if current.next else "")
-#        current = current.next
-#    print()
-#
-#def merge_playlists(playlist1, playlist2, a, b):
-#    pl1 = playlist1
-#    pl2 = playlist2
-#    dummy = None
-#    count = 0
-#    while pl1:
-#        if count == a:
-#            next_pl1 = pl1.next
-#            break
-#        count +=1
-#        pl1 = pl1.next
-#    pl1.next = pl2
-#    .next = next_pl1
+class Node:
+	def __init__(self, value, next=None):
+		self.value = value
+		self.next = next
+
+# For testing
+def print_linked_list(head):
+    current = head
+    while current:
+        print(current.value, end=" -> " if current.next else "")
+        current = current.next
+    print()
+
+def merge_playlists(playlist1, playlist2, a, b):
+    # Step 1: Find the (a-1)th node, i.e., the node before 'a'
+    prev_a = playlist1
+    for _ in range(a-1):
+         prev_a = prev_a.next
+    # Step 2: Find the bth node
+    node_b = prev_a
+    for _ in range(b-a+2):
+         node_b = node_b.next
+
+    after_b = node_b
+
+    # Step 3: Connect prev_a to the head of playlist2
+    prev_a.next = playlist2
     
+    # Step 4: Traverse to the end of playlist2
+    tail = playlist2
+    while tail:
+         tail = tail.next
+    # Step 5: Connect the last node of playlist2 to the node after b
+    tail.next = after_b
 
+    return playlist1
 # 1-2-3-4  => 1-2   4-3  => 1-4-2-3
 
 # 143 Reorder List Leetcode (Medium)
@@ -178,3 +188,63 @@ playlist2 = Node(('Respect', 'Aretha Franklin'),
 #print_linked_list(shuffle_playlist(playlist1))
 #print_linked_list(shuffle_playlist(playlist2))
 
+# Double Linstening Count
+class Node:
+	def __init__(self, value, next=None):
+		self.value = value
+		self.next = next
+
+# For testing
+def print_linked_list(head):
+    current = head
+    while current:
+        print(current.value, end=" -> " if current.next else "")
+        current = current.next
+    print()
+
+def double_listeners(monthly_listeners):
+    # reverse list
+    cur = monthly_listeners
+    prev = None
+    while cur:
+         nxt = cur.next
+         cur.next = prev
+         prev = cur
+         cur = nxt
+    # double each val
+    cur = prev
+    carry = 0
+    tail = 0
+    while cur:
+        total = cur.value * 2 + carry
+        cur.value = total % 10 # val i store
+        carry = total // 10 # what i pass to the next digi
+        tail = cur
+        cur = cur.next
+    if carry > 0:
+        tail.next = Node(carry)
+        
+
+    # reverse back 
+    current = prev
+    previous = None
+    while current:
+        nxt = current.next
+        current.next = previous
+        previous = current
+        current = nxt
+
+    return previous
+
+monthly_listeners1 = Node(1, Node(8, Node(9))) # 189
+monthly_listeners2 = Node(9, Node(9, Node(9))) # 999
+
+print_linked_list(double_listeners(monthly_listeners1))
+print_linked_list(double_listeners(monthly_listeners2))
+#Example Output:
+
+#3 -> 7 -> 8
+#Example 1 Explanation: 189 * 2 = 378
+
+#1 -> 9 -> 9 -> 8
+#Example 2 Explanation: 999 * 2 = 1998
