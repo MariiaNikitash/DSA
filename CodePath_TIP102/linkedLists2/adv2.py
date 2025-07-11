@@ -99,6 +99,7 @@
 
 # 1-2-3-4  => 1-2   4-3  => 1-4-2-3
 
+# 143 Reorder List Leetcode (Medium)
 
 class Node:
 	def __init__(self, value, next=None):
@@ -148,17 +149,6 @@ def shuffle_playlist(playlist):
         l2 = nxt_l2
 
     return playlist
-
-       
-       
-    
-
-    
-
-
-
-
-
 playlist1 = Node(1, Node(2, Node(3, Node(4))))
 
 playlist2 = Node(('Respect', 'Aretha Franklin'),

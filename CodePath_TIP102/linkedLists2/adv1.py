@@ -171,7 +171,7 @@ protein2 = Node('Ala', Node('Gly', Node('Leu', Node('Val'))))
 
 # find middle
 # reverse second half, starting at the second middle element
-# make a variable that srores max sum
+# make a variable that stores max sum
 # then iterate over both
 # add nodes values to cur sum
 # compare current sum with max sum
@@ -190,4 +190,36 @@ def print_linked_list(head):
         current = current.next
 
 def max_protein_pair_stability(head):
-    pass
+# find middle
+    slow=fast=head
+    while fast and fast.next:
+        slow = slow.next
+        fast = fast.next.next
+
+    middle = slow
+    prev = None
+    while middle:
+        nxt = middle.next
+        middle.next = prev
+        prev = middle
+        middle = nxt
+    # now prev is beginning of list 2
+
+    l1 = head
+    l2 = prev
+    max_sum = 0
+    while l2:
+        cur_sum = l1.value + l2.value
+        max_sum = max(max_sum, cur_sum)
+        nxt1,nxt2= l1.next, l2.next
+        l1.next = l2
+        l2.next = nxt1
+
+        l1, l2 = nxt1,nxt2
+    return max_sum
+
+head1 = Node(5, Node(4, Node(2, Node(1))))
+head2 = Node(4, Node(2, Node(2, Node(3))))
+
+print(max_protein_pair_stability(head1))
+print(max_protein_pair_stability(head2))
