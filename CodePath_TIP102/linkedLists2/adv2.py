@@ -1,63 +1,81 @@
-#class Node:
-#	def __init__(self, value, next=None):
-#		self.value = value
-#		self.next = next
-#
-## For testing
-#def print_queue(head):
-#    current = head.front
-#    while current:
-#        print(current.value, end=" -> " if current.next else "")
-#        current = current.next
-#    print()
-#
-#class Queue:
-#    def __init__(self):
-#        self.front = None
-#        self.rear = None
-#    
-#    def is_empty(self):
-#        return self.front is None
-#
-#    def enqueue(self, value):
-#        temp = Node(value)
-#
-#    
-#    def dequeue(self):
-#        if self.is_empty():
-#            return None
-#        ans = self.front.value
-#        self.front = self.front.next
-#        if self.front is None
-#
-#    def peek(self):
-#        pass
-#
-#
-##Create a new Queue
-#q = Queue()
-#
-## Add elements to the queue
-#q.enqueue(('Love Song', 'Sara Bareilles'))
-#q.enqueue(('Ballad of Big Nothing', 'Elliot Smith'))
-#q.enqueue(('Hug from a Dinosaur', 'Torres'))
-#print_queue(q)
-#
-## View the front element
-#print("Peek: ", q.peek()) 
+# Intersection of 2 lists Leetcode 160 (Easy)
+class Solution:
+    def getIntersectionNode(self, headA, headB):
+        if not headA or not headB:
+            return None
+        a = headA
+        b = headB
+        while b is not a:
+            b = b.next if b else headA
+            a = a.next if a else headB
+        return b
 
-# Remove elements from the queue
-#print("Dequeue: ", q.dequeue()) 
-#print("Dequeue: ", q.dequeue()) 
+# Problem 1: Next in Queue
+class Node:
+	def __init__(self, value, next=None):
+		self.value = value
+		self.next = next
 
-# Check if the queue is empty
-#print("Is Empty: ", q.is_empty()) 
+# For testing
+def print_queue(head):
+    current = head.front
+    while current:
+        print(current.value, end=" -> " if current.next else "")
+        current = current.next
+    print()
 
-# Remove the last element
-#print("Dequeue: ", q.dequeue()) 
+class Queue:
+    def __init__(self):
+        self.front = None
+        self.rear = None
+    
+    def is_empty(self):
+        return self.front is None
 
-# Check if the queue is empty
-#print("Is Empty:", q.is_empty()) 
+    def enqueue(self, value):
+        new_node = Node(value)
+        if self.is_empty():
+            self.front = self.rear = new_node
+        else:
+            self.rear.next = new_node
+            self.rear = new_node
+
+    
+    def dequeue(self):
+        if self.is_empty():
+            return None
+        removed_val = self.front.value
+        self.front = self.front.next
+        if self.front is None:
+            self.rear = None
+        return removed_val
+
+    def peek(self):
+        if self.is_empty():
+            return None
+        return self.front.value
+
+
+#Create a new Queue
+q = Queue()
+
+# Add elements to the queue
+q.enqueue(('Love Song', 'Sara Bareilles'))
+q.enqueue(('Ballad of Big Nothing', 'Elliot Smith'))
+q.enqueue(('Hug from a Dinosaur', 'Torres'))
+print_queue(q)
+
+# View the front element
+print("Peek: ", q.peek()) 
+#Remove elements from the queue
+print("Dequeue: ", q.dequeue()) 
+print("Dequeue: ", q.dequeue()) 
+#Check if the queue is empty
+print("Is Empty: ", q.is_empty()) 
+#Remove the last element
+print("Dequeue: ", q.dequeue()) 
+#Check if the queue is empty
+print("Is Empty:", q.is_empty()) 
 
 #('Love Song', 'Sara Bareilles') -> ('Ballad of Big Nothing', 'Elliot Smith') 
 # -> ('Hug from a Dinosaur', 'Torres')
