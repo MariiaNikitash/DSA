@@ -29,7 +29,7 @@
 # time would be:
 # n = len s1
 # m = len s2
-# O(m * n * n log n)
+# O(n * n * n log n)
 def checkInclusion(s1, s2):
     sorted_s1 = sorted(s1)   # O(n log n)
     k = len(s1)
@@ -66,6 +66,9 @@ def perm(s1, s2):
             return True
 
     return False
+
+
+
 
 # NOW 26-Array Version:
 # Time: O(n)
