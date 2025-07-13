@@ -221,8 +221,46 @@ def max_protein_pair_stability(head):
 head1 = Node(5, Node(4, Node(2, Node(1))))
 head2 = Node(4, Node(2, Node(2, Node(3))))
 
-print(max_protein_pair_stability(head1))
-print(max_protein_pair_stability(head2))
+#print(max_protein_pair_stability(head1))
+#print(max_protein_pair_stability(head2))
 
 # Problem 5:
 # LeetCode 328: Odd Even Linked List. (Medium)
+class Node:
+    def __init__(self, value, next=None):
+        self.value = value
+        self.next = next
+
+# For testing
+def print_linked_list(head):
+    current = head
+    while current:
+       print(current.value, end=" -> " if current.next else "\n")
+       current = current.next
+
+def odd_even_experiments(exp_results):
+    dummy_even = Node(None)
+    dummy_odd = Node(None)
+    even = dummy_even
+    odd = dummy_odd
+    i = 0
+    cur = exp_results
+    while cur:
+        if i % 2 == 0:
+            odd.next = cur
+            odd = odd.next
+        else:
+            even.next = cur
+            even = even.next
+        cur = cur.next
+        i += 1
+        
+    even.next = None
+    odd.next = dummy_even.next
+    return dummy_odd.next
+
+experiment_results1 = Node(1, Node(2, Node(3, Node(4, Node(5)))))
+experiment_results2 = Node(2, Node(1, Node(3, Node(5, Node(6, Node(4, Node(7)))))))
+
+print_linked_list(odd_even_experiments(experiment_results1))
+print_linked_list(odd_even_experiments(experiment_results2))
