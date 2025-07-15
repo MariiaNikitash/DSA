@@ -11,6 +11,6 @@ This repo includes solutions from:
 * DataLemur (SQL + logic questions)
 
 
-# Currently Working On: **`CodePath_TIP102`**
+# Currently Working In: **`CodePath_TIP102`**
 Most of my current work is in the `CodePath_TIP102` folder.
 I'm actively solving DSA problems from the CodePath Technical Interview Prep (TIP102 Advanced) program.
