@@ -81,3 +81,6 @@ def most_primes_list(head_a, head_b):
     else:
         return head_b
     
+
+# Palindrome Linked list!!! 
+# Add 2 numbers

@@ -249,4 +249,3 @@ print_linked_list(double_listeners(monthly_listeners2))
 #1 -> 9 -> 9 -> 8
 #Example 2 Explanation: 999 * 2 = 1998
 
-#
