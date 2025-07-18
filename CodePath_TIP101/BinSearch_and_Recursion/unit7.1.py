@@ -36,8 +36,7 @@ def fac(n):
 def sum_list(lst):
     if lst == []:
         return 0
-    print(lst[0])
-    print(lst[1:])
+    
     return lst[0] + sum_list(lst[1:])
 
 #print(sum_list([1, 2, 3, 4]))

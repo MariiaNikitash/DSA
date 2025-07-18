@@ -148,7 +148,7 @@ matrix2 = [
     [3, 2, 1]
 ]
 
-print(add_matrices(matrix1, matrix2))
+#print(add_matrices(matrix1, matrix2))
 
 
 
@@ -180,4 +180,68 @@ def canPlaceFlowers(flowerbed, n):
 #----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*
 
 
+
+# 151. Reverse Words in a String
+class Solution:
+    def reverseWords(self, s: str) -> str:
+        words = s.split()  # N
+        stack = [] # S
+        res = [] # S
+        for w in words: # N 
+            stack.append(w)
+        while stack: # N 
+            res.append(stack.pop())
+        return " ".join(res) # N
+    
+
+# or with 2 poinres 
+class Solution:
+    def reverseWords(self, s: str) -> str:
+        word = s.split()  
+        l,r = 0, len(word) -1
+        while l < r:
+            word[l], word[r] = word[r], word[l]
+            l+=1
+            r-=1
+        return " ".join(word)
+    
+
+#----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*----*
+# Reverse words in string 2
+'''
+input: ['t', 'h', 'e', ' ', 's', 'k', 'y', ' ', 'i', 's', ' ', 'b', 'l', 'u', 'e']
+outpu: ['b', 'l', 'u', 'e', ' ', 'i', 's', ' ', 's', 'k', 'y', ' ', 't', 'h', 'e']
+
+have a helper to reverse using 2 ptrs
+interate over len of list
+create a word strt var
+track if pointer idx lands on ' ' then call reverse function and shift idx after ' ' , update word strt var
+now we have reversed the letters in words 
+finally we have to apply reverse function to reverse the whole list 
+'''
+def reverseWords(strs):
+    def revers(word, start, end):
+        while start < end:
+            word[start], word[end] = word[end], word[start]
+            start += 1
+            end -= 1
+
+    word_start = 0
+    n = len(strs)
+    for idx in range(n):
+        if strs[idx] == ' ':
+            revers(strs, word_start, idx-1)
+            word_start = idx + 1
+        
+        elif idx == n-1:
+            revers(strs, word_start, idx)
+        
+    revers(strs, 0, n-1)
+    return strs
+
+input = ['t', 'h', 'e', ' ', 's', 'k', 'y', ' ', 'i', 's', ' ', 'b', 'l', 'u', 'e']
+#outp: ['b', 'l', 'u', 'e', ' ', 'i', 's', ' ', 's', 'k', 'y', ' ', 't', 'h', 'e']
+
+
+print(reverseWords(input))
 
