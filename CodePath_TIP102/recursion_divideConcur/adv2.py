@@ -22,7 +22,35 @@ def find_frequency_positions(transmissions, target_code):
     '''
     
     '''
+def search_range(nums, target):
+    first = -1
+    last = -1
 
+    # 🔍 Find first occurrence
+    l, r = 0, len(nums) - 1
+    while l <= r:
+        mid = (l + r) // 2
+        if nums[mid] == target:
+            first = mid
+            r = mid - 1  # go left to find earlier target
+        elif nums[mid] < target:
+            l = mid + 1
+        else:
+            r = mid - 1
+
+    # 🔍 Find last occurrence
+    l, r = 0, len(nums) - 1
+    while l <= r:
+        mid = (l + r) // 2
+        if nums[mid] == target:
+            last = mid
+            l = mid + 1  # go right to find later target
+        elif nums[mid] < target:
+            l = mid + 1
+        else:
+            r = mid - 1
+
+    return [first, last]
 
 #print(find_frequency_positions([5,7,7,8,8,10], 8))
 #print(find_frequency_positions([5,7,7,8,8,10], 6))

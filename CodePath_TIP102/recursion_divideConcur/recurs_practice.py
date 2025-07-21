@@ -93,3 +93,12 @@ def countup(n):
 
 print(countup(5))
 
+
+
+# Power 
+#2^3 = 8 -> 2*2*2 = 8
+def power(x, n):
+    if n == 0:
+        return 1
+    return power(x, n-1) * x
+print(power(2,3))
