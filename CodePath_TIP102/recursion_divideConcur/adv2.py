@@ -63,16 +63,19 @@ def search_range(nums, target):
 '''
 
 def next_greatest_letter(letters, target):
-    l,r = 0, len(letters) -1
+    l, r = 0, len(letters) - 1
+    res = letters[0]  # default for wrap-around case
+
     while l <= r:
-        mid = (l+r) // 2
+        mid = (l + r) // 2
 
         if letters[mid] <= target:
             l = mid + 1
-        else:   
+        else:
             res = letters[mid]
             r = mid - 1
-    return letters[res]
+
+    return res
 
 letters = ['a', 'a', 'b', 'c', 'c', 'c', 'e', 'h', 'w']
 
