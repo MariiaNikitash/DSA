@@ -129,7 +129,7 @@ def merge_playlists(playlist1, playlist2, a, b):
 
 
 
-#---------------------------------------------------------------
+#------------------------------------------------------------------------------------------------------------------------------
 # 143 Reorder List Leetcode (Medium)
 
 class Node:
@@ -188,7 +188,7 @@ playlist2 = Node(('Respect', 'Aretha Franklin'),
                         Node(('Like a Prayer', 'Madonna'),
                             Node(('Bohemian Rhapsody', 'Queen'))))))
 
-#print_linked_list(shuffle_playlist(playlist1))
+print_linked_list(shuffle_playlist(playlist1))
 #print_linked_list(shuffle_playlist(playlist2))
 
 # Double Linstening Count
@@ -242,8 +242,8 @@ def double_listeners(monthly_listeners):
 monthly_listeners1 = Node(1, Node(8, Node(9))) # 189
 monthly_listeners2 = Node(9, Node(9, Node(9))) # 999
 
-print_linked_list(double_listeners(monthly_listeners1))
-print_linked_list(double_listeners(monthly_listeners2))
+#print_linked_list(double_listeners(monthly_listeners1))
+#print_linked_list(double_listeners(monthly_listeners2))
 #Example Output:
 
 #3 -> 7 -> 8

@@ -158,7 +158,10 @@ def reverse(head):
 kart_choices = Node("Bullet Bike", Node("Wild Wing", Node("Pirahna Prowler")))
 
 #print_linked_list(reverse(kart_choices))
-# ==================================
+
+
+
+# ====================================================
 # Is summentrical Linked List
 class Node:
     def __init__(self, value, next=None):

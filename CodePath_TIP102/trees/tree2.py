@@ -154,3 +154,64 @@ grotto = build_tree(values)
 
 # Using print_tree() function included at top of page
 print_tree(add_treasure(grotto, "Thingamabob")) 
+
+# -----------------------------------------------------------------
+# Problem 3: add node at leaf
+"""
+             Snarfblat
+            /        \
+        Gadget       Whatzit
+       /     \           \
+Dinglehopper Gizmo       Whozit
+"""
+
+# Using build_tree() function at the top of page
+values = ["Snarfblat", "Gadget", "Whatzit", "Dinglehopper", "Gizmo", "Whozit"]
+grotto = build_tree(values)
+
+# Using print_tree() function included at top of page
+print_tree(add_treasure(grotto, "Thingamabob")) 
+
+['Snarfblat', 'Gadget', 'Whatzit', 'Dinglehopper', 'Gizmo', None, 'Whozit']
+'''
+               Snarfblat
+            /             \
+        Gadget            Whatzit
+       /     \           /       \
+Dinglehopper Gizmo  Thingamabob  Whozit
+'''
+
+# -----------------------------------------------------------------
+# Problem 4: 
+class TreeNode:
+    def __init__(self, value, left=None, right=None):
+        self.val = value
+        self.left = left
+        self.right = right
+
+def remove_species(ecosystem, name):
+    pass
+
+"""
+                Dugong
+             /         \
+       Brain Coral   Lionfish
+              \       /       \
+         Clownfish Giant Clam  Seagrass
+"""
+# Use build_tree() function at top of page
+values = ["Dugong", "Brain Coral", "Lionfish", None, "Clownfish", "Giant Clam", "Seagrass"]
+ecosystem = build_tree(ecosystem)
+
+# Using print_tree() function at top of page
+print_tree(remove_species(ecosystem, "Lionfish"))
+
+#['Dugong', 'Brain Coral', 'Giant Clam', None', 'Clownfish', None, 'Seagrass']
+'''
+Explanation:
+The resulting tree structure:
+             Dugong
+            /      \
+      Brain Coral  Giant Clam
+              \            \
+           Clownfish    Seagrass '''
