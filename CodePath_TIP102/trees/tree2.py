@@ -215,3 +215,17 @@ The resulting tree structure:
       Brain Coral  Giant Clam
               \            \
            Clownfish    Seagrass '''
+
+
+# rooot node val is equal to sum of ALL childs
+# if so -> True
+# Otherwise _> False
+def root_equals_sum_of_descendants(root):
+    # Write your code here
+    if not root:
+        return True
+    def dfs(node):
+        if not node:
+            return 0
+        return node.val + dfs(node.left) + dfs(node.right) 
+    return root.val == dfs(root.left) + dfs(root.right)
