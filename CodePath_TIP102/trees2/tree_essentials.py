@@ -1,4 +1,8 @@
-# Inorder
+###############################################################
+# PHASE 1: Core 4 Traversals
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# # Inorder
 # left - node - right
 # Definition for a binary tree node.
 # class TreeNode:
@@ -44,7 +48,6 @@ class Solution:
     
 
 # Level Order Traversal <- BFS
-
 from collections import deque
 class Solution:
     def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
@@ -64,3 +67,33 @@ class Solution:
             if level: # so q doesnt add null nodes to result
                 res.append(level)
         return res
+    
+
+###############################################################
+# PHASE 2: Depth, Height, Count — Bottom-Up Patterns
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Max Depth of a tree
+def maxDepth(self, root: Optional[TreeNode]) -> int:
+    if not root:
+        return 0
+    return 1 + max(maxDepth(root.left), maxDepth(root.right))
+
+
+# Count nodes
+def countNodes(self, root: Optional[TreeNode]) -> int:
+    if not root:
+        return 0
+    return 1 + countNodes(root.left), countNodes(root.right)
+
+
+# Sum of Left Leaves
+def sumOfLeftLeaves(self, root: Optional[TreeNode]) -> int:
+    if not root:
+        return 0
+    total = 0
+    if root.left and not root.left.left and not root.left.right:
+        total += root.left.val
+    total += self.sumOfLeftLeaves(root.left)
+    total += self.sumOfLeftLeaves(root.right)
+    return total
