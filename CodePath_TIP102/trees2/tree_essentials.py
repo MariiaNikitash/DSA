@@ -97,3 +97,86 @@ def sumOfLeftLeaves(self, root: Optional[TreeNode]) -> int:
     total += self.sumOfLeftLeaves(root.left)
     total += self.sumOfLeftLeaves(root.right)
     return total
+
+
+# Min Depth 
+def minDepth(self, root: Optional[TreeNode]) -> int:
+    if not root:
+        return 0
+    # # if one of the children is None, we must go down the other
+    if not root.left:
+        return 1 + self.minDepth(root.right)
+    if not root.right:
+        return 1 + self.minDepth(root.left)
+    return 1 + min(self.minDepth(root.left), self.minDepth(root.right))
+
+
+###############################################################
+# PHASE 3: Boolean Return – Path Logic
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Path Sum 
+def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
+        if not root:
+            return False
+
+        if not root.left and not root.right:
+            return targetSum  == root.val 
+
+        #recursively substract nodes val from target sum
+        remainingSum = targetSum - root.val
+        return self.hasPathSum(root.left, remainingSum) or self.hasPathSum(root.right, remainingSum)
+
+
+# Path Sum iteratively 
+def hasPathSum(root, targetSum):
+    if not root:
+        return False
+
+    stack = [(root, targetSum - root.val)]  # (node, remainingSum)
+
+    while stack:
+        node, currSum = stack.pop()
+
+        # If it's a leaf, check if the path sum matches
+        if not node.left and not node.right and currSum == 0:
+            return True
+
+        # Push children with updated remaining sum
+        if node.right:
+            stack.append((node.right, currSum - node.right.val))
+        if node.left:
+            stack.append((node.left, currSum - node.left.val))
+
+    return False
+
+
+# Is summetric Tree
+#        3
+#     / | \ 
+#    2  |  2
+#   / \ | / \ 
+#  7   9 9   7
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+from collections import deque
+class Solution:
+    def isSymmetric(self, root: Optional[TreeNode]) -> bool:
+        def dfs(left, right):
+            if not left and not right:
+                return True
+            # if one of ghe trees is none -> false
+            if not left or not right:
+                return False
+            # check inside children mirror each other: left.right vs right.left AND The outside children mirror each other: left.right vs right.left
+            return (left.val == right.val and dfs(left.left, right.right) and dfs(left.right, right.left))
+
+        return dfs(root.left, root.right)
+    
+
+# 
