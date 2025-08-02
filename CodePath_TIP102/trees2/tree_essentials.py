@@ -1,3 +1,4 @@
+from typing import Optional
 ###############################################################
 # PHASE 1: Core 4 Traversals
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -5,11 +6,11 @@
 # # Inorder
 # left - node - right
 # Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
 class Solution:
     def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         if not root:
@@ -116,16 +117,15 @@ def minDepth(self, root: Optional[TreeNode]) -> int:
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Path Sum 
+# tree has a path equal to target
 def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
-        if not root:
-            return False
-
-        if not root.left and not root.right:
-            return targetSum  == root.val 
-
-        #recursively substract nodes val from target sum
-        remainingSum = targetSum - root.val
-        return self.hasPathSum(root.left, remainingSum) or self.hasPathSum(root.right, remainingSum)
+    if not root:
+        return False
+    if not root.left and not root.right:
+        return targetSum  == root.val 
+    #recursively substract nodes val from target sum
+    remainingSum = targetSum - root.val
+    return self.hasPathSum(root.left, remainingSum) or self.hasPathSum(root.right, remainingSum)
 
 
 # Path Sum iteratively 
@@ -157,26 +157,30 @@ def hasPathSum(root, targetSum):
 #    2  |  2
 #   / \ | / \ 
 #  7   9 9   7
+# left and right subtees should be same (as in mirror)
 
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
-from collections import deque
-class Solution:
-    def isSymmetric(self, root: Optional[TreeNode]) -> bool:
-        def dfs(left, right):
-            if not left and not right:
-                return True
-            # if one of ghe trees is none -> false
-            if not left or not right:
-                return False
-            # check inside children mirror each other: left.right vs right.left AND The outside children mirror each other: left.right vs right.left
-            return (left.val == right.val and dfs(left.left, right.right) and dfs(left.right, right.left))
-
-        return dfs(root.left, root.right)
+def isSymmetric(self, root: Optional[TreeNode]) -> bool:
+    def dfs(left, right):
+        if not left and not right:
+            return True
+        # if one of ghe trees is none -> false
+        if not left or not right:
+            return False
+        # check inside children mirror each other: left.right vs right.left AND The outside children mirror each other: left.right vs right.left
+        return (left.val == right.val and dfs(left.left, right.right) and dfs(left.right, right.left))
+    return dfs(root.left, root.right)
     
 
-# 
+# Is Same Tree
+# if both trees are identical -> true, else: false
+def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+    if not p and not q:
+        return True
+    
+    if not p or not q:
+        return False
+    
+    return (p.val == q.val and self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right))
+
+    
+# Balanced Binary Tree
