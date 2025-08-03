@@ -203,7 +203,18 @@ def isBalanced(self, root: Optional[TreeNode]) -> bool:
 # PHASE 4: Global Variables – Track Max/Min/Longest
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-
-
+# Diamenter of Binary Tree
+def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
+    res = 0
+    def dfs(node):
+        if node is None:
+            return 0
+        left, right = dfs(node.left), dfs(node.right)
+        nonlocal res
+        res = max(res, left + right)
+        # returns the height 
+        return 1 + max(left, right)
+    dfs(root)
+    return res
 
 
