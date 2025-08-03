@@ -31,7 +31,6 @@ class Solution:
         return res
     
 
-
 # Postorder
 # left - right - node
 class Solution:
@@ -182,5 +181,29 @@ def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
     
     return (p.val == q.val and self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right))
 
-    
+
 # Balanced Binary Tree
+def isBalanced(self, root: Optional[TreeNode]) -> bool:
+    def dfs(node):
+        if node is None:
+            return [True, 0]
+        
+        left, right = dfs(node.left), dfs(node.right)
+        # if left, right and from the root is balanced
+        balance = left[0] and right[0] and abs(left[1] - right[1]) <= 1
+        return [balance, 1 + max(left[1], right[1])]
+    
+    return dfs(root)[0]
+
+#Returning [isBalanced, height] together:
+#Lets check balance, Avoids recalculating heights
+
+
+###############################################################
+# PHASE 4: Global Variables – Track Max/Min/Longest
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+
+
+
