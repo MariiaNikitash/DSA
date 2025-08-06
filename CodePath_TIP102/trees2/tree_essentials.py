@@ -110,6 +110,32 @@ def minDepth(self, root: Optional[TreeNode]) -> int:
         return 1 + self.minDepth(root.left)
     return 1 + min(self.minDepth(root.left), self.minDepth(root.right))
 
+# Avarage of levels in BT
+def averageOfLevels(root):
+    if not root:
+        return []
+
+    res = []
+    q = deque([root])
+
+    while q:
+        level_size = len(q)
+        level_sum = 0
+
+        for _ in range(level_size):
+            node = q.popleft()
+            level_sum += node.val
+
+            if node.left:
+                q.append(node.left)
+            if node.right:
+                q.append(node.right)
+
+        avg = level_sum / level_size
+        res.append(avg)
+
+    return res
+
 
 ###############################################################
 # PHASE 3: Boolean Return – Path Logic
@@ -217,5 +243,6 @@ def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
     dfs(root)
     return res
 
-# 
+#  Maximum Path Sum
+
 
