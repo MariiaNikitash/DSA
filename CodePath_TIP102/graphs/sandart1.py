@@ -24,20 +24,24 @@ flights = {
 
 
 # Problem 2
-# given adj list [[1,2], [], [0], [2]] so False
-# direction from i to j return True if exists j to i
+# given adj list [[1,2], [], [0], [2]] if
+# direction from i to j if exists j to i ret True else False
 def bidirectional_flights(flights):
     for i in range(len(flights)):
          for j in flights[i]:
               if i not in flights[j]:
                    return False
     return True
+flights1 = [[1, 2], [0], [0, 3], [2]]
+flights2 = [[1, 2], [], [0], [2]]
 
+#print(bidirectional_flights(flights1))
+#print(bidirectional_flights(flights2))
 
 
 def get_direct_flights(flights, source):
     result = []
-    for i in range(len(flights[source])):
+    for i in range(len(flights[source])): # length of flights of source row
         if flights[source][i] == 1:
             result.append(i)  # ✅ append the destination index
     return result
@@ -53,7 +57,7 @@ flights = [
 
 
 # Problem 4
-# Convert representation of Graph as a list to a dict
+# Convert a list representation of Graph to a dict
 def get_adj_dict(flights):
     adj_list = {}
     for a,b in flights:
@@ -81,3 +85,6 @@ print(get_adj_dict(flights))
     'Cairo': ['Cape Town', 'Nairobi', 'Lagos'],
     'Nairobi': ['Cairo']
 }
+
+
+# 
