@@ -1,3 +1,7 @@
+'''
+Time Complexity of GRaphs is O(N+E)
+'''
+
 """
 JFK ----- LAX
 |
@@ -75,7 +79,7 @@ def get_adj_dict(flights):
     return adj_list
 flights = [['Cape Town', 'Addis Ababa'], ['Cairo', 'Lagos'], ['Lagos', 'Addis Ababa'], 
             ['Nairobi', 'Cairo'], ['Cairo', 'Cape Town']]
-print(get_adj_dict(flights))
+#print(get_adj_dict(flights))
 
 # Output :
 {
@@ -86,5 +90,66 @@ print(get_adj_dict(flights))
     'Nairobi': ['Cairo']
 }
 
+from collections import defaultdict
+# Problem 5
+def find_center(terminals):
+    graph = defaultdict(list)
+    for a, b in terminals:
+        graph[a].append(b)
+        graph[b].append(a)
+    max_key = max(graph, key=lambda k: len(graph[k]))
+    return max_key
+#terminals1 = [[1,2],[2,3],[4,2]]
+#terminals2 = [[1,2],[5,1],[1,3],[1,4]]
 
-# 
+#print(find_center(terminals1))
+#print(find_center(terminals2))
+
+# OR 
+def find_center(terminals):
+    count = {}
+    
+    for u, v in terminals:
+        count[u] = count.get(u, 0) + 1
+        count[v] = count.get(v, 0) + 1
+    
+    # The center node is the one with the highest count (appears n-1 times)
+    for terminal, c in count.items():
+        if c > 1:  # Appears in more than 1 edge, must be the center
+            return terminal
+        
+
+from collections import deque
+# BFS traversal Goal: Return all locations reachable from a given start, including via layovers.
+#Output: A list of all reachable destinations, sorted by number of layovers required 
+# Problem 6
+def get_all_destinations(flights, start):
+    q = deque([start])
+    visited = set([start])
+    res = []
+    while q:
+        cur = q.popleft()
+        res.append(cur)
+        for neighbor in flights.get(cur, []):
+            if neighbor not in visited:
+                visited.add(neighbor)
+                q.append(neighbor)
+    return res
+         
+
+flights = {
+    "Tokyo": ["Sydney"],
+    "Sydney": ["Tokyo", "Beijing"],
+    "Beijing": ["Mexico City", "Helsinki"],
+    "Helsinki": ["Cairo", "New York"],
+    "Cairo": ["Helsinki", "Reykjavik"],
+    "Reykjavik": ["Cairo", "New York"],
+    "Mexico City": ["Sydney"],
+    "New York": []   
+}
+
+#print(get_all_destinations(flights, "Beijing")) # ['Beijing', 'Mexico City', 'Helsinki', 'Sydney', 'Cairo', 'New York', 'Tokyo', 
+#'Reykjavik']
+#print(get_all_destinations(flights, "Helsinki")) # ['Helsinki', 'Cairo', 'New York', 'Reykjavik']
+
+
