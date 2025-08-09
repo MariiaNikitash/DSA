@@ -153,3 +153,4 @@ flights = {
 #print(get_all_destinations(flights, "Helsinki")) # ['Helsinki', 'Cairo', 'New York', 'Reykjavik']
 
 
+# Problem 7 DFS Traversal on same flights problem
