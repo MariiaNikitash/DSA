@@ -154,3 +154,34 @@ flights = {
 
 
 # Problem 7 DFS Traversal on same flights problem
+def get_all_destinations_dfs(flights, start):
+    stack = [start]
+    visited = set([start])
+    res = []
+    while stack:
+        cur = stack.pop()
+        res.append(cur)
+        for neighbor in flights.get(cur, []):
+            if neighbor not in visited:
+                visited.add(neighbor)
+                stack.append(neighbor)
+    return res
+
+#print(get_all_destinations_dfs(flights, "Beijing"))
+
+# OR Recursionvely 
+def get_all_destinations_dfs_recurs(flights, start):
+    visited = set()
+    res = []
+
+    def dfs(node):
+        visited.add(node)
+        res.append(node)
+
+        # Expand
+        for neighbor in flights.get(node, []):
+            if neighbor not in visited:
+                dfs(neighbor)
+    dfs(start)
+    return res
+print(get_all_destinations_dfs_recurs(flights, "Beijing"))
