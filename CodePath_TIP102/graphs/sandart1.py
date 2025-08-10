@@ -184,4 +184,45 @@ def get_all_destinations_dfs_recurs(flights, start):
                 dfs(neighbor)
     dfs(start)
     return res
-print(get_all_destinations_dfs_recurs(flights, "Beijing"))
+#print(get_all_destinations_dfs_recurs(flights, "Beijing"))
+
+
+# Problem 8
+
+def find_itinerary(boarding_passes):
+    dic = {}
+    all_arrivals = set()
+    for dep, arr in boarding_passes:
+        dic[dep] = arr
+        all_arrivals.add(arr)
+    
+    start = None
+    for dep, arr in boarding_passes:
+        if dep not in all_arrivals:
+            start = dep
+            break
+    
+    road = []
+    while start:
+        road.append(start)
+        start = dic.get(start)
+        
+    return road
+
+
+boarding_passes_1 = [
+                    ("JFK", "ATL"),
+                    ("SFO", "JFK"),
+                    ("ATL", "ORD"),
+                    ("LAX", "SFO")]
+
+boarding_passes_2 = [
+                    ("LAX", "DXB"),
+                    ("DFW", "JFK"),
+                    ("LHR", "DFW"),
+                    ("JFK", "LAX")]
+
+print(find_itinerary(boarding_passes_1)) # ['LAX', 'SFO', 'JFK', 'ATL', 'ORD']
+#print(find_itinerary(boarding_passes_2)) # ['LHR', 'DFW', 'JFK', 'LAX', 'DXB']
+#Example Output:
+
