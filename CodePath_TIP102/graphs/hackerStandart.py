@@ -65,3 +65,65 @@ def count_connected_components(adjacency_dict):
             dfs(node)        # Visit all nodes in this component
 
     return count
+
+
+# Given undiorected graph as a matrix ret True of graph contains cycles, else False
+# While doing DFS, we reach a vertex that has already been visited and it’s not the parent of the current vertex.
+def has_cycle(adj_matrix):
+    n = len(adj_matrix)
+    visited = set()
+
+    def dfs(node, parent):
+        visited.add(node)
+        for neighbor in range(n):
+            if adj_matrix[node][neighbor] == 1:
+                if neighbor not in visited:
+                    if dfs(neighbor, node):
+                        return True
+                elif neighbor != parent:
+                    # Found a back edge to a visited node that's not the parent
+                    return True
+        return False
+
+    for start in range(n):
+        if start not in visited:
+            if dfs(start, -1):  # parent = -1 for the first node
+                return True
+    return False
+
+
+'''
+dfs(matrix, start) should perform a Depth-First Search on a graph represented as an adjacency matrix.
+
+matrix[i][j] == 1 means there is an edge from node i to node j.
+
+start is the node index to begin the search.
+
+It should return a list of all reachable nodes in DFS order.
+
+
+'''
+def dfs(matrix, start):
+    visited = set()
+    result = []
+
+    def dfs_recursive(node):
+        visited.add(node)
+        result.append(node)
+
+        n = len(matrix)
+        for neighbor in range(n):
+            if matrix[node][neighbor] == 1 and neighbor not in visited:
+                dfs_recursive(neighbor)
+
+    dfs_recursive(start)
+    return result
+
+
+matrix = [
+ [0, 1, 0, 0],
+ [1, 0, 1, 1],
+ [0, 1, 0, 0],
+ [0, 1, 0, 0]
+]
+start = 0
