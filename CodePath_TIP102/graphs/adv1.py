@@ -291,8 +291,11 @@ def num_airline_regions(is_connected):
     for i in range(n):
         if i not in visited:
             regions += 1
+            print(f"\nNew region found starting at {i}")
             bfs(i)
+            print(f"Visited after BFS from {i}: {visited}")
     return regions
+
 
 
 
@@ -313,4 +316,4 @@ is_connected2 = [
 ]
 
 print(num_airline_regions(is_connected1))
-print(num_airline_regions(is_connected2)) 
+#print(num_airline_regions(is_connected2)) 
