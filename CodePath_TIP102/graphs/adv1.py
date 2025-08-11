@@ -222,7 +222,95 @@ boarding_passes_2 = [
                     ("LHR", "DFW"),
                     ("JFK", "LAX")]
 
-print(find_itinerary(boarding_passes_1)) # ['LAX', 'SFO', 'JFK', 'ATL', 'ORD']
+#print(find_itinerary(boarding_passes_1)) # ['LAX', 'SFO', 'JFK', 'ATL', 'ORD']
 #print(find_itinerary(boarding_passes_2)) # ['LHR', 'DFW', 'JFK', 'LAX', 'DXB']
-#Example Output:
 
+
+
+# Number of Flights
+'''
+Return the minimum number of flights needed to travel from airport start to airport destination.
+ If it is not possible to fly from airport start to airport destination, return -1
+ # Minimum(or shortest) -> automatically BFS
+'''
+
+def counting_flights(flights, start, destination):
+    if start == destination:
+        return 0
+    q = deque([(start, 0)])
+    visited = set([start])
+
+    while q:
+        node, dist = q.popleft()
+        for neighbor in range(len(flights)):
+            if flights[node][neighbor] == 1 and neighbor not in visited:
+                if neighbor == destination:
+                    return dist + 1
+                visited.add(neighbor)
+                q.append((neighbor, dist + 1))
+    return -1
+
+# Time:  O(N²)
+# Space: O(N)
+
+flights = [
+    [0, 1, 1, 0, 0], # Airport 0
+    [0, 0, 1, 0, 0], # Airport 1
+    [0, 0, 0, 1, 0], # Airport 2
+    [0, 0, 0, 0, 1], # Airport 3
+    [0, 0, 0, 0, 0]  # Airport 4
+]
+
+print(counting_flights(flights, 0, 2))  
+print(counting_flights(flights, 0, 4))
+print(counting_flights(flights, 4, 0))
+
+
+
+# Problem 8
+'''
+You are given an n x n matrix is_connected where is_connected[i][j] = 1 if CodePath Airlines offers
+direct flight between airport i and airport j, and is_connected[i][j] = 0 otherwise.
+'''    
+def num_airline_regions(is_connected):
+    visited = set()
+    regions = 0
+    n = len(is_connected)
+
+    def bfs(start):
+        q = deque([start])
+        visited.add(start)
+
+        while q:
+            node = q.popleft()
+            for neighbor in range(n):
+                if neighbor not in visited and is_connected[node][neighbor] == 1:
+                    visited.add(neighbor)
+                    q.append(neighbor)
+
+    for i in range(n):
+        if i not in visited:
+            regions += 1
+            bfs(i)
+    return regions
+
+
+
+
+
+
+is_connected1 = [
+    [1, 1, 0],
+    [1, 1, 0],
+    [0, 0, 1]
+]
+
+is_connected2 = [
+    [1, 0, 0, 1],
+    [0, 1, 1, 0],
+    [0, 1, 1, 0],
+    [1, 0, 0, 1]
+]
+
+print(num_airline_regions(is_connected1))
+print(num_airline_regions(is_connected2)) 
