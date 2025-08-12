@@ -16,7 +16,7 @@ def numIslands(grid):
             directions = [[1,0], [-1,0], [0,1], [0, -1]]
 
             for dr, dc in directions:
-                # chek if in bounds
+                # check if in bounds
                 new_r, new_c = row + dr, col + dc
                 if (new_r in range(rows) and new_c in range(cols) and grid[new_r][new_c] == '1' and (new_r,new_c) not in visited):
                     visited.add((new_r,new_c))
