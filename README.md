@@ -5,12 +5,10 @@ Welcome to my personal repository for solving and practicing Data Structures and
 This repo includes solutions from:
 
 * LeetCode
-
+* NeetCode
 * CodePath (TIP102 Advanced)
-
 * DataLemur (SQL + logic questions)
 
 
-# Currently Working In: **`CodePath_TIP102`**
-Most of my current work is in the `CodePath_TIP102` folder.
-I'm actively solving DSA problems from the CodePath Technical Interview Prep (TIP102 Advanced) program.
+## Currently Working In: `neetcode` and `CodePath_TIP102` folders 
+
