@@ -40,3 +40,5 @@ def LongestConsequtiveSeq(nums):
 print(LongestConsequtiveSeq([2,20,4,10,3,4,5]))
 print(LongestConsequtiveSeq([2]))
 
+# time: N
+# Space: N for a set
