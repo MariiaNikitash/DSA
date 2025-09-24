@@ -25,6 +25,7 @@ Explanation: In order to take course 1 you must take course 0, and to take cours
 '''
 
 
+
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
         preMap = {i:[] for i in range(numCourses)}
