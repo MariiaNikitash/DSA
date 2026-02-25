@@ -100,5 +100,39 @@ print(countup(5))
 def power(x, n):
     if n == 0:
         return 1
-    return power(x, n-1) * x
-print(power(2,3))
+    #return power(x, n-1) * x
+#print(power(2,3))
+
+# sum of all digits
+# 432 -> 4+3+2 = 9
+def Sum(n):
+    if n < 10:
+        return n
+    return Sum(n//10) + n%10
+
+print("Вийшло ", Sum(432))
+
+def revers(s):
+    if len(s) <= 1:
+        return s
+    return revers(s[1:]) + s[0]
+print("Маша навпаки - ", revers("Маша"))
+
+
+# bin search , given sorted arr and target return its index or -1
+def bin(arr, target, l=0, r=None):
+    if r is None:
+        r = len(arr) -1
+    if l > r:
+        return -1
+    
+    mid = (l+r)//2
+
+    if arr[mid] == target:
+        return mid
+    
+    if target < arr[mid]:
+        return bin(arr, target, l, mid-1)
+    return bin(arr, target, mid+1, r)
+
+
