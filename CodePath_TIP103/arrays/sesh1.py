@@ -134,11 +134,76 @@ def smaller_than_current(nums):
 	
 
 nums = [8, 1, 2, 2, 3]
-print(smaller_than_current(nums)) # [4, 0, 1, 1, 3]
+#print(smaller_than_current(nums)) # [4, 0, 1, 1, 3]
 
 nums = [6, 5, 4, 8] #[2, 1, 0, 3]
 
-print(smaller_than_current(nums))
+#print(smaller_than_current(nums))
 
 nums = [7, 7, 7, 7] # 0,0,0,0
-print(smaller_than_current(nums))
+##print(smaller_than_current(nums))
+
+
+# P 7
+def diagonal_sum(grid):
+	n = len(grid)
+	total = 0
+	for i in range(n):
+		total += grid[i][i]
+		total += grid[i][n - 1 - i]
+	if n % 2 == 1:
+		total -= grid[n // 2][n // 2]
+	return total
+
+
+grid = [
+	[1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+#print(diagonal_sum(grid)) #25
+
+grid = [
+	[1, 1, 1, 1],
+    [1, 1, 1, 1],
+	[1, 1, 1, 1],
+    [1, 1, 1, 1]
+]
+#print(diagonal_sum(grid)) #8
+
+grid = [
+	[5]
+]
+#print(diagonal_sum(grid))
+
+# P1 S1
+
+def linear_search(items, target):
+	for i, item in enumerate(items):
+		if item == target:
+			return i
+	return -1
+
+items = ['haycorn', 'haycorn', 'haycorn', 'hunny', 'haycorn']
+target = 'hunny'
+#print(linear_search(items, target))
+
+items = ['bed', 'blue jacket', 'red shirt', 'hunny']
+target = 'red balloon'
+#print(linear_search(items, target))
+
+'''T-I-Double Guh-Er: That spells Tigger! Write a function tiggerfy() that accepts a string word
+ and returns a new string that removes any substrings t, i, gg, and er from word. The function should be case insensitive.'''
+def tiggerfy(word):
+	stripped = word.strip('tigger')
+	return stripped 
+
+
+word = "Trigger" 
+print(tiggerfy(word)) # r
+
+word = "eggplant"
+print(tiggerfy(word)) #eplan
+
+word = "Choir"
+print(tiggerfy(word)) # chor
