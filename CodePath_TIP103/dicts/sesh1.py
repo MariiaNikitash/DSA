@@ -148,5 +148,26 @@ def can_trust_message(message):
 message1 = "sphinx of black quartz judge my vow"
 message2 = "trust me"
 
-print(can_trust_message(message1))
-print(can_trust_message(message2))
+#print(can_trust_message(message1))
+#print(can_trust_message(message2))
+
+#P3 s1
+# Return an array of all the integers that appear twice, representing the treasure chests that have duplicates.
+def find_duplicate_chests(chests):
+    dic = {}
+    res = []
+    for c in chests:
+        dic[c] = dic.get(c, 0) + 1
+    for k, v in dic.items():
+        if v == 2:
+            res.append(k)
+    return res
+
+
+chests1 = [4, 3, 2, 7, 8, 2, 3, 1] # [2, 3]
+chests2 = [1, 1, 2] # [1]
+chests3 = [1]
+
+print(find_duplicate_chests(chests1))
+print(find_duplicate_chests(chests2))
+print(find_duplicate_chests(chests3))
