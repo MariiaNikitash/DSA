@@ -115,6 +115,32 @@ fabrics_2 = [("Linen", 50), ("Recycled Wool", 40), ("Tencel", 30), ("Organic Cot
 fabrics_3 = [("Linen", 14), ("Hemp", 20), ("Recycled Polyester", 40), ("Bamboo", 50)]
 
 
-print(find_best_fabric_pair(fabrics, 45))
-print(find_best_fabric_pair(fabrics_2, 70))
-print(find_best_fabric_pair(fabrics_3, 70))
+##print(find_best_fabric_pair(fabrics, 45))
+#print(find_best_fabric_pair(fabrics_2, 70))
+#print(find_best_fabric_pair(fabrics_3, 70))
+
+def calculate_fabric_waste(items, fabric_rolls):
+    leftovers = 0
+    n = len(items)
+    for i in range(n):
+        item_len, roll_len = items[i][1], fabric_rolls[i]
+        if item_len < roll_len:
+            left = roll_len - item_len
+            leftovers += left 
+
+
+    return leftovers
+
+items = [("T-Shirt", 2), ("Pants", 3), ("Jacket", 5)]
+fabric_rolls1 = [5, 5, 5]
+print("fabric_rolls before function:", fabric_rolls1)
+
+items_2 = [("Dress", 4), ("Skirt", 3), ("Blouse", 2)]
+fabric_rolls2 = [4, 4, 4]
+
+items_3 = [("Jacket", 6), ("Shirt", 2), ("Shorts", 3)]
+fabric_rolls3 = [7, 5, 5]
+
+print(calculate_fabric_waste(items, fabric_rolls1))
+print(calculate_fabric_waste(items_2, fabric_rolls2))
+print(calculate_fabric_waste(items_3, fabric_rolls3))
